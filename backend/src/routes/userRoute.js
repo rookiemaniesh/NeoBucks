@@ -62,7 +62,28 @@ userRouter.post("/signup",async(req,res)=>{
 })
 
 userRouter.post("/signin",async (req,res)=>{
-    
+    const {email,password}=req.body;
+    const ValidUser=await User.findOne({
+        email
+    })
+    if(!ValidUser){
+        res.status(404).json({
+            message:"Wrong Credentials"
+        })
+    }else{
+        const ValidPassword=await bcrypt.compare(password,ValidUser.password)
+        if(!ValidPassword){
+           res.status(404).json({
+            message:"Wrong Credentials"
+        }) 
+        }else{
+            const token=jwt.sign({userId:ValidUser._id},process.env.JWT_SECRET)
+            res.status(200).json({
+                message:"Signed In Succesfully",
+                token:token
+            })
+        }
+    }
 })
 
 export default userRouter; 
