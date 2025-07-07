@@ -6,14 +6,14 @@ const UserSchema= new Schema({
         required: true,
         unique: true,
         trim:true,
-        Lowercase: true,
+        lowercase: true,
         
     },
     password:{
         type:String,
         required: true,
         minLength:5,
-        maxLength: 20
+        maxLength: 200
     },
     firstName:{
         type:String,
