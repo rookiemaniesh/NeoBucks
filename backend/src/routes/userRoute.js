@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js";
 import auth from "../middlewares/auth.js";
+
 const userSignupSchema=z.object({
     email:z.string().email(),
     password:z.string()
@@ -30,7 +31,19 @@ const userSigninSchema=z.object({
 
     
 })
+const userUpdateSchema=z.object({
+    password:z.string()
+            .min(5,"Length of Password is too short")
+            .max(20,"Length of Password is too long")
+            .regex(/[A-Z]/,"Password should contain atleast one Uppercase")
+            .regex(/[a-z]/,"Password should contain atleast one Lowercase")
+            .regex(/[0-9]/,"Password should contain atleast one Digit")
+            .regex(/[\W_]/,"Password should contain atleast one Special Chracter")
+            .optional(),
+    firstName:z.string().min(2,"Name too short").optional(),
+    lastName:z.string().min(2,"Name too short").optional(),
 
+}).strict();
 const userRouter = express.Router();
 
 userRouter.post("/signup",async(req,res)=>{
@@ -113,10 +126,31 @@ userRouter.post("/signin",async (req,res)=>{
     }
    
 })
-userRouter.get("/profile",auth,(req,res)=>{
-    res.json({
-        message:"hello"
-    })
+userRouter.put("/profile",auth,async(req,res)=>{
+    const ParseResult=userUpdateSchema.safeParse(req.body)
+    if(!ParseResult.success){
+        return res.status(411).json({
+            message:"Invalid Data",
+            errors:ParseResult.error.flatten().fieldErrors
+        })
+    }
+    try {
+        const userId=req.userId;
+        const updateData={...ParseResult.data}
+        if(updateData.password){
+            updateData.password=await bcrypt.hash(updateData.password,10)
+        }
+        await User.updateOne({_id:userId},updateData)
+        res.json({
+            message:"Updated Succesfully"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message:"Something Went Wrong",
+            errors:error
+        })
+    }   
 })
 
 export default userRouter; 
