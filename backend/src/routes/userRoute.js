@@ -3,6 +3,7 @@ import * as z from "zod/v4";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js";
+import auth from "../middlewares/auth.js";
 const userSignupSchema=z.object({
     email:z.string().email(),
     password:z.string()
@@ -111,6 +112,11 @@ userRouter.post("/signin",async (req,res)=>{
         })
     }
    
+})
+userRouter.get("/profile",auth,(req,res)=>{
+    res.json({
+        message:"hello"
+    })
 })
 
 export default userRouter; 
