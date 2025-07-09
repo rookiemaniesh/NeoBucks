@@ -4,6 +4,9 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js";
 import auth from "../middlewares/auth.js";
+import Bank from "../models/Bank.js";
+
+const userRouter = express.Router();
 
 const userSignupSchema=z.object({
     email:z.string().email(),
@@ -44,7 +47,7 @@ const userUpdateSchema=z.object({
     lastName:z.string().min(2,"Name too short").optional(),
 
 }).strict();
-const userRouter = express.Router();
+
 
 userRouter.post("/signup",async(req,res)=>{
     const ParseResult=userSignupSchema.safeParse(req.body)
@@ -72,6 +75,10 @@ userRouter.post("/signup",async(req,res)=>{
                 lastName
             })
             const userId=user._id;
+            await Bank.create({
+                userId,
+                balance:10000
+            })
             const token=jwt.sign({userId},process.env.JWT_SECRET)
             res.status(200).json({
                 message:"User Created",
