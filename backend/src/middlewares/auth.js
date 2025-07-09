@@ -3,8 +3,12 @@ import jwt from"jsonwebtoken";
 
 const auth=async(req,res,next)=>{
     const authHeader=req.headers.token;
+    if(!authHeader|| !authHeader.startsWith('Bearer')){
+        return res.status(403).json({message:"SignUp"})
+    }
     try {
-        const decoded=jwt.verify(authHeader,process.env.JWT_SECRET)
+        const token=authHeader.split('')[1];
+        const decoded=jwt.verify(token,process.env.JWT_SECRET)
         if(!decoded){
             return res.status(404).json({
                 message:"Please SignIn"
