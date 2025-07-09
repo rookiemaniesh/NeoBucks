@@ -7,8 +7,11 @@ const auth=async(req,res,next)=>{
         return res.status(403).json({message:"SignUp"})
     }
     try {
-        const token=authHeader.split('')[1];
+        const token=authHeader.split(' ')[1];
+        console.log(token)
+        // console.log(authHeader)
         const decoded=jwt.verify(token,process.env.JWT_SECRET)
+        console.log(decoded)
         if(!decoded){
             return res.status(404).json({
                 message:"Please SignIn"
@@ -20,7 +23,7 @@ const auth=async(req,res,next)=>{
         }
     } catch (error) {
         res.status(500).json({
-            message:"Something Went Wrong",
+            message:"Something Went Wrong ",
             errors:error
         })
     }
