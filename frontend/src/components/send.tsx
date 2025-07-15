@@ -1,4 +1,3 @@
-import React from 'react'
 
 export const Send = () => {
     return <div className="flex justify-center h-screen bg-gray-100">

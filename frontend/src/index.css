@@ -2,6 +2,13 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@theme{
+    --color-esidebar-100:rgb(240, 244, 250);
+    --color-esidebar-200:rgb(239, 243, 250);
+    --color-esidebar-300:rgb(224, 232, 245);
+    --color-esidebar-400:rgb(209, 221, 240);
+
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
