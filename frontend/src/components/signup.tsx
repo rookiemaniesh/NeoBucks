@@ -6,13 +6,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import axios from "axios"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export function Signup({
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div">) 
+{
+  const[lastName,SetLastName]=useState("")
+  const[firstName,SetFirstName]=useState("")
+  const[email,SetEmail]=useState("")
+  const[password,SetPassword]=useState("")
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen w-full p-6">
       <div className="w-full max-w-sm">
@@ -30,6 +41,9 @@ export function Signup({
                 <Input
                   id="email"
                   type="email"
+                  onChange={e=>{
+                    SetEmail(e.target.value)
+                  }}
                   placeholder="m@example.com"
                   required
                 />
@@ -39,6 +53,9 @@ export function Signup({
                 <Input
                   id="firstName"
                   type="text"
+                  onChange={e=>{
+                    SetFirstName(e.target.value)
+                  }}
                   placeholder="John"
                   required
                 />
@@ -48,6 +65,9 @@ export function Signup({
                 <Input
                   id="lastName"
                   type="text"
+                  onChange={e=>{
+                    SetLastName(e.target.value)
+                  }}
                   placeholder="Doe"
                   required
                 />
@@ -57,10 +77,29 @@ export function Signup({
                   <Label htmlFor="password">Password</Label>
                   
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" onChange={e=>{SetPassword(e.target.value)}} type="password" required />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
+                <Button type="submit"
+                onClick={async(e)=>{
+                 
+                  e.preventDefault(); 
+                  try {
+                    const response= await axios.post("http://localhost:3000/api/v1/user/signup",{
+                    email,
+                    firstName,
+                    lastName,
+                    password
+                  })
+                  
+                  localStorage.setItem("token",response.data.token)
+                  } catch (error) {
+                    console.error("Error during signup:", error);
+                    
+                  }
+                 
+                }}
+                className="w-full">
                   Sign Up
                 </Button>
                 
@@ -68,9 +107,9 @@ export function Signup({
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
-              <a href="/signin" className="underline underline-offset-4">
+              <Link to="/signin" className="underline underline-offset-4">
                 Sign in
-              </a>
+              </Link>
             </div>
           </form>
         </CardContent>
