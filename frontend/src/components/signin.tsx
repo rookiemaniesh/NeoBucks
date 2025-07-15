@@ -53,7 +53,21 @@ export function Signin({
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit"
-                
+                onClick={async(e)=>{
+                  e.preventDefault()
+                  try {
+                    const response= await axios.post("http://localhost:3000/api/v1/user/signin",{
+                    email,
+                    password
+                  })
+                  localStorage.setItem("token",response.data.token)
+                  
+                  } catch (error) {
+                    console.error("Error during sign-in:", error);
+                    
+                  }
+                 
+                }} 
                 className="w-full">
                   Login
                 </Button>
