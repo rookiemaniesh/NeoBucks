@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -15,6 +14,8 @@ export function Signup({
   ...props
 }: React.ComponentProps<"div">) {
   return (
+    <div className="flex items-center justify-center min-h-screen w-full p-6">
+      <div className="w-full max-w-sm">
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
@@ -67,13 +68,15 @@ export function Signup({
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
-              <a href="#" className="underline underline-offset-4">
+              <a href="/signin" className="underline underline-offset-4">
                 Sign in
               </a>
             </div>
           </form>
         </CardContent>
       </Card>
+    </div>
+    </div>
     </div>
   )
 }

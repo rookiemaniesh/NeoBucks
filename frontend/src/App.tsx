@@ -1,15 +1,24 @@
-// import React from 'react'
+import React from 'react'
 import Dashboard from './components/dashboard'
 import {  Signin } from './components/signin'
 import { Signup } from './components/signup'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import Landing from './components/landing'
+import Send from './components/send'
 
 const App = () => {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        < Signin/>
-      </div>
-    </div>
+    <>
+   <BrowserRouter>
+   <Routes>
+    <Route path='/' element={<Landing/>}/>
+    <Route path='/signup' element={<Signup/>}/>
+    <Route path='/signin' element={<Signin/>}/>
+    <Route path='/dashboard' element={<Dashboard/>}/>
+    <Route path='/send' element={<Send/>}/>
+   </Routes>
+   </BrowserRouter>
+    </>
   )
 }
 
