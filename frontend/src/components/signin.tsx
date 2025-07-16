@@ -61,17 +61,19 @@ export function Signin({
                     email,
                     password
                   })
+                  console.log(response.data)
                   if(response.data && response.data.token) {
+                    console.log(response.data)
                     localStorage.setItem("token",response.data.token)
-                    toast.success("Signed In!")
+                    toast.success(response.data.message )
                     navigate("/dashboard");
                   } else {
-                    toast.error("Invalid credentials")
+                    toast.error(response.data.message)
                   }
                   
                   } catch (error) {
                     console.error("Error during sign-in:", error);
-                    toast.error("Sign-in failed");
+                    toast.error("Something went wrong!!!");
                     
                   }
                  

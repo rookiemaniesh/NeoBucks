@@ -93,18 +93,18 @@ export function Signup({
                     lastName,
                     password
                   })
-                  if(response.data && response.data.token) {
-
+                  if(response.data.token) {
+                      
                     localStorage.setItem("token",response.data.token)
-                    toast.success("Signed Up!")
+                    toast.success(response.data.message )
                   }else{
-                    toast.error("Signup failed")
+                    toast.error(response.data.message)
                   }
                   
                   navigate("/dashboard");
                   } catch (error) {
                     console.error("Error during signup:", error);
-                    toast.error("Signup failed");
+                    toast.error("Something went wrong!");
                     
                   }
                  

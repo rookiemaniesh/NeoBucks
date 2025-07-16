@@ -51,10 +51,15 @@ export const Send = () => {
                     </div>
                     <Button
                     onClick={()=>{
-                        axios.post("http://localhost:3000/api/v1/account/transfer", {
-                            to:id,
-                            amount
-                        })
+                        try {
+                            axios.post("http://localhost:3000/api/v1/account/transfer", {
+                                to:id,
+                                amount
+                            })
+                            
+                        } catch (error) {
+                            console.error("Error during transfer:", error);
+                        }
                     }}
                     className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-blue-500 hover:bg-blue-400 cursor-pointer text-white">
                         Make Payment
