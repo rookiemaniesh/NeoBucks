@@ -2,10 +2,16 @@
 import Sidebar from './sidebar'
 import Breadcrumbs from './breadcrumbs'
 import { Button } from './ui/button'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Dashboard = () => {
+  useEffect(()=>{
+
+  },[])
+  const navigate = useNavigate();
   return (
     <div className='flex bg-white '>
    <Sidebar/>
@@ -24,7 +30,11 @@ const Dashboard = () => {
     <div className=' my-2 px-2 py-1 w-fit pr-20 border-gray-300 border-2 rounded-md'>
     <h1 className='text-lg font-bold'>Quick Pay</h1>
     <h1 className='text-md text-zinc-500'>Send Money directly to your Homies</h1>
-    <Button className='mt-2.5'>Make Payment</Button>
+    <Button
+    onClick={()=>{
+      navigate("/search")
+    }}
+    className='mt-2.5'>Make Payment</Button>
     </div>
     
   </div>

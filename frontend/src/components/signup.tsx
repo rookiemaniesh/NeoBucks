@@ -9,7 +9,7 @@ import {
 import axios from "axios"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export function Signup({
@@ -24,6 +24,7 @@ export function Signup({
 
 
 
+  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-center min-h-screen w-full p-6">
       <div className="w-full max-w-sm">
@@ -93,6 +94,7 @@ export function Signup({
                   })
                   
                   localStorage.setItem("token",response.data.token)
+                  navigate("/dashboard");
                   } catch (error) {
                     console.error("Error during signup:", error);
                     

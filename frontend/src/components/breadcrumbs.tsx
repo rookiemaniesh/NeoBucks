@@ -16,12 +16,9 @@ const Breadcrumbs = () => {
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+      <BreadcrumbPage >Dashboard</BreadcrumbPage>
     </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-    </BreadcrumbItem>
+   
   </BreadcrumbList>
 </Breadcrumb>
     )
