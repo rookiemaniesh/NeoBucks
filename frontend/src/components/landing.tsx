@@ -36,44 +36,38 @@ export default function Landing() {
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-            <span className="text-black text-sm">☀</span>
-          </div>
-          <span className="text-xl font-semibold text-black">Billi</span>
+          <img src="/logo.png" alt="Logo" className="h-8" />
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="#" className="text-gray-600 hover:text-black transition-colors">
-            Features
+          <Link to="/" className="text-gray-600 hover:text-black transition-colors">
+            Home
           </Link>
-          <Link to="#" className="text-gray-600 hover:text-black transition-colors">
+          <Link to="https://github.com/rookiemaniesh/NeoBucks/blob/main/README.md" className="text-gray-600 hover:text-black transition-colors">
             About
           </Link>
           <div className="flex items-center gap-2">
-            <Link to="#" className="text-gray-600 hover:text-black transition-colors">
-              {"We're Hiring"}
+            <Link to="https://github.com/rookiemaniesh/NeoBucks" className="text-gray-600 hover:text-black transition-colors">
+              Source Code
             </Link>
-            <Badge className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full">1</Badge>
+            
           </div>
         </nav>
 
         <Button variant="outline" className="bg-blue-100 text-blue-600 border-blue-200 hover:bg-blue-200">
-          Get early access
+          Get Started
         </Button>
       </header>
 
       {/* Main Content */}
       <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-bold text-black mb-8 leading-tight">
-            be money
+          <h1 className="text-4xl md:text-7xl font-bold text-black mb-8 leading-tight">
+            Make money  
+            <span className="text-blue-500"> moves</span>
             <br />
-            <span className="inline-flex items-center gap-2">
-              m
-              <span className="w-12 h-12 md:w-16 md:h-16 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-black text-2xl md:text-3xl">☺</span>
-              </span>
-              ndful
+            <span className="text-3xl md:text-7xl tracking-tighter">
+             with NeoBucks Instantly
             </span>
           </h1>
 
