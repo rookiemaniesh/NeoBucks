@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
+import toast from 'react-hot-toast';
 
 export function Signup({
   className,
@@ -92,8 +93,12 @@ export function Signup({
                     lastName,
                     password
                   })
+                  if(response.data && response.data.token) {
+
+                    localStorage.setItem("token",response.data.token)
+                    toast.success("Signed Up!")
+                  }
                   
-                  localStorage.setItem("token",response.data.token)
                   navigate("/dashboard");
                   } catch (error) {
                     console.error("Error during signup:", error);
