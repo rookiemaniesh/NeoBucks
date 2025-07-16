@@ -34,7 +34,7 @@ export default function Landing() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+      <header className="relative z-10 flex items-center justify-between  py-3 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
           <img src="/logo.png" alt="Logo" className="h-8" />
         </div>
@@ -53,44 +53,44 @@ export default function Landing() {
             
           </div>
         </nav>
+        <div className="flex items-center gap-4">
 
-        <Button variant="outline" className="bg-blue-100 text-blue-600 border-blue-200 hover:bg-blue-200">
-          Get Started
+         <Button variant="outline" className="bg-blue-100 text-blue-600 border-blue-200 hover:bg-blue-200 rounded-full">
+          Sign In
         </Button>
+        <Button variant="outline" className="border-blue-100 text-black bg-blue-200 hover:bg-blue-100 hover:text-blue-600 hover:border-blue-200 rounded-full">
+          Sign Up
+        </Button>
+        </div>
       </header>
+      <div className="w-full h-px bg-gray-300"></div>
 
       {/* Main Content */}
       <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-7xl font-bold text-black mb-8 leading-tight">
-            Make money  
-            <span className="text-blue-500"> moves</span>
+            <span className="tracking-tighter">Try mock</span>
+            <span className="text-blue-500 tracking-tighter italic"> payments</span>
             <br />
-            <span className="text-3xl md:text-7xl tracking-tighter">
-             with NeoBucks Instantly
+            <span className="text-3xl md:text-7xl ">
+            instantly now.
             </span>
           </h1>
 
           <p className="text-gray-500 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-            A new, easy way to track bills, manage finances, and enjoy your money.
+            Fake money, real payment flow.
+            <br />
+            Test, learn, and play with NeoBucks.
           </p>
 
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 text-lg rounded-full mb-16">
-            Join the waitlist
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-5 text-lg rounded-full mb-16">
+            Get Started
           </Button>
         </div>
       </main>
 
-      {/* Bottom Section */}
-      <div className="relative z-10 flex justify-center pb-8">
-        <Button
-          variant="outline"
-          className="bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300 rounded-full px-6 py-2 flex items-center gap-2"
-        >
-          <Zap className="w-4 h-4" />
-          Directory Info
-        </Button>
-      </div>
+     
+     
     </div>
   )
 }
