@@ -51,7 +51,7 @@ const userUpdateSchema=z.object({
 
 userRouter.post("/signup",async(req,res)=>{
     const ParseResult=userSignupSchema.safeParse(req.body)
-    console.log(ParseResult)
+    // console.log(ParseResult)
     if(!ParseResult.success){
        return res.status(404).json({
             message:"Validation Error",

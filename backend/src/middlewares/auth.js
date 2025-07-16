@@ -2,7 +2,8 @@ import jwt from"jsonwebtoken";
 
 
 const auth=async(req,res,next)=>{
-    const authHeader=req.headers.token;
+    const authHeader=req.headers.authorization;
+    console.log(authHeader)
     if(!authHeader|| !authHeader.startsWith('Bearer')){
         return res.status(403).json({message:"SignUp"})
     }
