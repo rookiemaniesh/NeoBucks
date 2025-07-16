@@ -97,11 +97,14 @@ export function Signup({
 
                     localStorage.setItem("token",response.data.token)
                     toast.success("Signed Up!")
+                  }else{
+                    toast.error("Signup failed")
                   }
                   
                   navigate("/dashboard");
                   } catch (error) {
                     console.error("Error during signup:", error);
+                    toast.error("Signup failed");
                     
                   }
                  

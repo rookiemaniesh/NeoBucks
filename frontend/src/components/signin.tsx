@@ -8,9 +8,10 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 export function Signin({
   className,
@@ -19,6 +20,7 @@ export function Signin({
  
   const[email, SetEmail] = useState("")
   const[password, SetPassword] = useState("")
+  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-center min-h-screen w-full p-6">
       <div className="w-full max-w-sm">
@@ -59,10 +61,17 @@ export function Signin({
                     email,
                     password
                   })
-                  localStorage.setItem("token",response.data.token)
+                  if(response.data && response.data.token) {
+                    localStorage.setItem("token",response.data.token)
+                    toast.success("Signed In!")
+                    navigate("/dashboard");
+                  } else {
+                    toast.error("Invalid credentials")
+                  }
                   
                   } catch (error) {
                     console.error("Error during sign-in:", error);
+                    toast.error("Sign-in failed");
                     
                   }
                  
