@@ -5,6 +5,7 @@ import { Signup } from './components/signup'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Landing from './components/landing'
 import Send from './components/send'
+import SearchTab from './components/Searchtab'
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
     <Route path='/signin' element={<Signin/>}/>
     <Route path='/dashboard' element={<Dashboard/>}/>
     <Route path='/send' element={<Send/>}/>
+    <Route path='/search' element={<SearchTab/>}/>
+
    </Routes>
    </BrowserRouter>
     </>
