@@ -54,7 +54,10 @@ export const Send = () => {
                         try {
                             axios.post("http://localhost:3000/api/v1/account/transfer", {
                                 to:id,
-                                amount
+                                amount,
+                                headers: {
+                                 Authorization: `Bearer ${localStorage.getItem("token")}`
+                     }
                             })
                             
                         } catch (error) {

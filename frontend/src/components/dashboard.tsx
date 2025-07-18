@@ -2,14 +2,28 @@
 import Sidebar from './sidebar'
 import Breadcrumbs from './breadcrumbs'
 import { Button } from './ui/button'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
 
 const Dashboard = () => {
+  const[balance, setBalance] = useState(0);
   useEffect(()=>{
-
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:3000/api/v1/account/balance",{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      setBalance(response.data.balance);
+      console.log(response.data);
+    };
+    fetchData();
+  },[]);
+  useEffect(()=>{
+    
   },[])
   const navigate = useNavigate();
   return (
@@ -24,7 +38,7 @@ const Dashboard = () => {
 
   <div className='mx-3 my-2 px-2 py-1 w-fit pr-30 border-gray-300 border-2 rounded-md'>
     <h1 className='text-lg font-bold'>Account Balance</h1>
-    <h2 className='text-2xl font-bold '>₹10,000</h2>
+    <h2 className='text-2xl font-bold '>{balance}</h2>
     <h3 className='text-sm text-blue-600 mt-5'>Manage Balance</h3>
     </div>
     <div className=' my-2 px-2 py-1 w-fit pr-20 border-gray-300 border-2 rounded-md'>
@@ -38,17 +52,22 @@ const Dashboard = () => {
     </div>
     
   </div>
-  <div className='ml-3 w-full border-2 border-gray-300 rounded-md '>
+  
+    </div>
+    </div>
+  )
+}
+function TransactionDetail({transaction}){
+  return (
+    <div className='ml-3 w-full border-2 border-gray-300 rounded-md '>
     <h1 className='text-lg font-bold px-3 pt-2 pb-1'>Recent Transactions</h1>
     <div className='w-full h-0.5 bg-gray-300'></div>
     <div className='p-3'>
-      <h2 className='text-md font-bold'>Transaction 1</h2>
-      <h3 className='text-sm text-gray-600'>Date: 01/01/2023</h3>
-      <h3 className='text-sm text-gray-600'>Amount: ₹1,000</h3>
+      <h2 className='text-md font-bold'>{transaction.to}</h2>
+      {/* <h3 className='text-sm text-gray-600'>Date: {transaction.date}</h3> */}
+      <h3 className='text-sm text-gray-600'>Amount: ₹{transaction.amount}</h3>
     </div>
   </div>
-    </div>
-    </div>
   )
 }
 

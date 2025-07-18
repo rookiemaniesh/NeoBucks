@@ -96,6 +96,7 @@ export function Signup({
                   if(response.data.token) {
                       
                     localStorage.setItem("token",response.data.token)
+                    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
                     toast.success(response.data.message )
                   }else{
                     toast.error(response.data.message)

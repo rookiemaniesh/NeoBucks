@@ -2,9 +2,10 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Zap } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Landing() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       {/* Decorative curved lines */}
@@ -35,11 +36,13 @@ export default function Landing() {
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between  py-3 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Logo" className="h-8" />
+        <div >
+          <Link to="/" >
+            <img src="/logo.png" alt="Logo" className="h-9" />
+          </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center  gap-8 text-md font-semibold">
           <Link to="/" className="text-gray-600 hover:text-black transition-colors">
             Home
           </Link>
@@ -55,15 +58,23 @@ export default function Landing() {
         </nav>
         <div className="flex items-center gap-4">
 
-         <Button variant="outline" className="bg-blue-100 text-blue-600 border-blue-200 hover:bg-blue-200 rounded-full">
+         <Button 
+         onClick={()=>{
+           navigate("/signin")
+         }}
+         variant="outline" className="bg-blue-100 text-blue-600 border-blue-200 hover:bg-blue-200 rounded-full ">
           Sign In
         </Button>
-        <Button variant="outline" className="border-blue-100 text-black bg-blue-200 hover:bg-blue-100 hover:text-blue-600 hover:border-blue-200 rounded-full">
+        <Button 
+        onClick={()=>{
+          navigate("/signup")
+        }}
+        variant="outline" className="border-blue-100 text-black bg-blue-200 hover:bg-blue-100 hover:text-blue-600 hover:border-blue-200 rounded-full">
           Sign Up
         </Button>
         </div>
       </header>
-      <div className="w-full h-px bg-gray-300"></div>
+      {/* <div className="w-full h-px bg-gray-300"></div> */}
 
       {/* Main Content */}
       <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6 text-center">
@@ -77,13 +88,17 @@ export default function Landing() {
             </span>
           </h1>
 
-          <p className="text-gray-500 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-lg md:text-xl mb-4 max-w-2xl mx-auto leading-relaxed">
             Fake money, real payment flow.
             <br />
             Test, learn, and play with NeoBucks.
           </p>
 
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-5 text-lg rounded-full mb-16">
+          <Button 
+          onClick={()=>{
+            navigate("/signin")
+          }}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-5 text-lg rounded-full ">
             Get Started
           </Button>
         </div>

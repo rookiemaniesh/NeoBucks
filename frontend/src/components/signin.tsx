@@ -61,10 +61,11 @@ export function Signin({
                     email,
                     password
                   })
-                  console.log(response.data)
+                  
                   if(response.data && response.data.token) {
-                    console.log(response.data)
+                    
                     localStorage.setItem("token",response.data.token)
+                    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
                     toast.success(response.data.message )
                     navigate("/dashboard");
                   } else {

@@ -10,10 +10,29 @@ const SearchTab=()=>{
     const [filter, setFilter] = useState("");
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter="+ filter)
-        .then((response) => {
-            setUsers(response.data.user);
-        })
+        // axios.get("http://localhost:3000/api/v1/user/bulk?filter="+ filter)
+        // .then((response) => {
+        //     setUsers(response.data.user);
+        // })
+        const fetchUsers = async () => {
+    if (filter.trim().length < 1) {
+      setUsers([]); // Clear users if input is too short
+      return;
+    }
+
+    try {
+      const response = await axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      setUsers(response.data.user);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+    }
+  };
+
+  fetchUsers();
 
     }
     ,[filter])
