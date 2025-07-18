@@ -21,3 +21,5 @@ const TransactionSchema=new Schema({
     default:Date.now
    }
 })
+const Transaction=mongoose.model("Transaction",TransactionSchema)
+export default Transaction;
